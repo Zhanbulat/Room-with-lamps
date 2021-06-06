@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Rooms with lamps:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Rooms with lamps</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="RoomsWithLamps-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Rooms with lamps:war exploded" />
+    </root>
+  </artifact>
+</component>
