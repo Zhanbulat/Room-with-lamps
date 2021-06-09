@@ -28,7 +28,6 @@
         <servlet-name>roomInside</servlet-name>
         <servlet-class>app.servlets.RoomInside</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>roomInside</servlet-name>
         <url-pattern>/room</url-pattern>

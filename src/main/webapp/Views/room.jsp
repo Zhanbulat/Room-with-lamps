@@ -13,7 +13,7 @@
 <body
 <%
 
-    if(request.getServletContext().getAttribute(session.getAttribute("name")+"light")!=null&&request.getServletContext().getAttribute(session.getAttribute("name")+"light").equals("onn")){
+    if(request.getServletContext().getAttribute(session.getAttribute("name")+"light")!=null&&request.getServletContext().getAttribute(session.getAttribute("name")+"light").equals("TRUE")){
     out.print("style='background-color:yellow';>");
 }
     else{
@@ -22,11 +22,14 @@
 %>
 
 <h1><%=session.getAttribute("name")%></h1>
-<button onclick="location.href='/room?light=onn'">Включить свет</button>
-<button onclick="location.href='/room?light=off'">Выключить свет</button>
 
+
+<button onclick="location.href='/room?light=TRUE'">Включить свет</button>
+</b>
+<button onclick="location.href='/room?light=FALSE'">Выключить свет</button>
+</b>
 <div>
-    <button onclick="location.href='/'">Back to main</button>
+    <button onclick="location.href='/list'">Back to list</button>
 </div>
 </body>
 </html>

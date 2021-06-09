@@ -1,4 +1,5 @@
 <%@ page import="java.util.List" %>
+<%@ page import="jakarta.servlet.ServletContext" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,13 +8,15 @@
 
 <body>
 <div>
-    <h1>Super app!</h1>
+    <h1>Комнаты с лампочками</h1>
 </div>
 
 <div>
     <div>
         <div>
-            <h2>Rooms</h2>
+            <h2>Список комнат</h2>
+
+
         </div>
         <%
             List<String> names = (List<String>) request.getAttribute("roomNames");
@@ -31,6 +34,12 @@
 
 <div>
     <button onclick="location.href='/'">Back to main</button>
+</div>
+<div>
+    <%if(request.getAttribute("error")!=null&&request.getAttribute("error").equals("error")){
+        out.println("У вас нет доступа в эту комнату");
+    }
+    %>
 </div>
 </body>
 </html>

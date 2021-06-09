@@ -25,7 +25,7 @@
                 <input type="text" name="name"><br />
             </label>
             <label>Country:
-                <select name="countries">
+                <select name="country">
                 <option value="United States">United States</option>
                 <option value="United Kingdom">United Kingdom</option>
                 <option value="Afghanistan">Afghanistan</option>
