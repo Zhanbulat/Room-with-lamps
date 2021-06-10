@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AddServlet extends HttpServlet {
@@ -21,18 +22,35 @@ public class AddServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String country = req.getParameter("country");
-        Room room = new Room(name, country);
-        room.setLight(false);
-        Connection conn;
-        try {
-            conn = Utility.connectToDB();
-            String sql = "INSERT INTO ROOMS(name,country,light) " + "VALUES(" + "'" + room.getName() + "'" + ",'" + room.getCountry() + "'," + room.getLight() + ");";
-            conn.createStatement().executeUpdate(sql);
-            conn.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-        req.setAttribute("roomName", name);
+            if(name.equals("") || country == null){
+                req.setAttribute("empty","empty");
+            }
+            else {
+                try {
+                    req.setAttribute("exist","notexist");
+                    Connection conn = Utility.connectToDB();
+                    String sql = "SELECT country FROM Rooms WHERE name=" +"'"+name+"'";
+                    ResultSet rs = conn.createStatement().executeQuery(sql);
+                    while (rs.next()) {
+                        String countryCheck = rs.getString(("country"));
+                        if (country.equals(countryCheck)) {
+                            req.setAttribute("exist", "exist");
+                            conn.close();
+                            break;
+                        }
+                    }
+                    if(req.getAttribute("exist").equals("notexist")) {
+                        Room room = new Room(name, country);
+                        room.setLight(false);
+                        sql = "INSERT INTO ROOMS(name,country,light) " + "VALUES(" + "'" + room.getName() + "'" + ",'" + room.getCountry() + "'," + room.getLight() + ");";
+                        conn.createStatement().executeUpdate(sql);
+                        conn.close();
+                        req.setAttribute("roomName", name);
+                    }
+                } catch (ClassNotFoundException | SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         doGet(req, resp);
-    }
+}
 }

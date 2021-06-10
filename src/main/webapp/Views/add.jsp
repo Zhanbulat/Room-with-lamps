@@ -2,32 +2,38 @@
 <html>
 <head>
     <title>Add new room</title>
+    <link href="Views/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <div>
-    <h1>Super app!</h1>
+    <h1>Rooms with light bulbs</h1>
 </div>
 
 <div>
     <%
         if (request.getAttribute("roomName") != null) {
-            out.println("<p>Room '" + request.getAttribute("roomName") + "' added!</p>");
+            out.println("<p>Room " + request.getAttribute("roomName") + " added!</p>");
         }
     %>
+</div>
+<div><% if(request.getAttribute("empty") == "empty") {
+    out.println("<p>Please, fill all fields</p>");
+}%></div>
+<div><%if(request.getAttribute("exist")!=null&&request.getAttribute("exist").equals("exist")) {
+    out.println("<p>Room already exist</p>");
+}%></div>
+<div>
     <div>
         <div>
             <h2>Create room</h2>
         </div>
-
         <form method="post">
-            <label>Room Name:
+            <label class="label">Room Name:
                 <input type="text" name="name"><br />
             </label>
-            <label>Country:
-                <select name="country">
-                <option value="United States">United States</option>
-                <option value="United Kingdom">United Kingdom</option>
+            <label class="label">Country:
+                <select  name="country">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -269,13 +275,12 @@
                 <option value="Zimbabwe">Zimbabwe</option>
                 </select>
             </label>
-            <button type="submit">Submit</button>
+            <div style="margin-top: 10px">
+            <button class="button" type="submit">Submit</button>
+            </div>
         </form>
+        <button class="button" onclick="location.href='/'">Back to main</button>
     </div>
-</div>
-
-<div>
-    <button onclick="location.href='/'">Back to main</button>
 </div>
 </body>
 </html>

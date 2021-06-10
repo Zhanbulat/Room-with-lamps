@@ -8,28 +8,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Inside the room</title>
+    <link href="Views/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body
 <%
 
     if(request.getServletContext().getAttribute(session.getAttribute("name")+"light")!=null&&request.getServletContext().getAttribute(session.getAttribute("name")+"light").equals("TRUE")){
-    out.print("style='background-color:yellow';>");
+    out.print("style='background-color:yellow'>");
 }
     else{
         out.print(">");
     }
 %>
+<div class="home">
+<h1 style="font-size: xxx-large" class="home-text"><%=session.getAttribute("name")%></h1>
 
-<h1><%=session.getAttribute("name")%></h1>
+    <div class="button-wrapper" style="flex-direction: column;align-items: center">
+<button style="width: 200px"  class="button" onclick="location.href='/room?light=TRUE'">Turn ON the light</button>
+<button style="width: 200px"  class="button" onclick="location.href='/room?light=FALSE'">Turn OFF the light</button>
+        <button class="button" style="width: 200px"  onclick="location.href='/list'">Back to list of rooms</button>
+    </div>
 
-
-<button onclick="location.href='/room?light=TRUE'">Включить свет</button>
-</b>
-<button onclick="location.href='/room?light=FALSE'">Выключить свет</button>
-</b>
-<div>
-    <button onclick="location.href='/list'">Back to list</button>
 </div>
 </body>
 </html>

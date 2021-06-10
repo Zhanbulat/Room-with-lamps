@@ -16,6 +16,8 @@ public class RoomInside extends HttpServlet {
         String roomName = req.getParameter("name");
         HttpSession session = req.getSession();
         if (roomName != null) {
+            int ind=roomName.indexOf("(");
+            roomName=roomName.substring(0,ind);
             session.setAttribute("name", roomName);
         }
         try {

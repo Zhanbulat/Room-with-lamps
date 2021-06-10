@@ -4,17 +4,18 @@
 <html>
 <head>
     <title>Rooms</title>
+    <link href="Views/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <div>
-    <h1>Комнаты с лампочками</h1>
+    <h1>Rooms with light bulbs</h1>
 </div>
 
 <div>
     <div>
         <div>
-            <h2>Список комнат</h2>
+            <h2>List of rooms:</h2>
 
 
         </div>
@@ -24,7 +25,7 @@
             if (names != null && !names.isEmpty()) {
                 out.println("<ui>");
                 for (String s : names) {
-                    out.println("<li><a href='/room?name="+s+"'>"+s+"</a></li>");
+                    out.println("<li class='list-item'><a style='text-decoration:none' href='/room?name="+s+"'>"+s+"</a></li>");
                 }
                 out.println("</ui>");
             } else out.println("<p>There are no rooms yet!</p>");
@@ -33,11 +34,11 @@
 </div>
 
 <div>
-    <button onclick="location.href='/'">Back to main</button>
+    <button class="button" onclick="location.href='/'">Back to main</button>
 </div>
 <div>
     <%if(request.getAttribute("error")!=null&&request.getAttribute("error").equals("error")){
-        out.println("У вас нет доступа в эту комнату");
+        out.println("You do not have access to this room");
     }
     %>
 </div>

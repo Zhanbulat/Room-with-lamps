@@ -23,11 +23,11 @@ public class ListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
             Connection conn = Utility.connectToDB();
-            String sql = "SELECT name FROM Rooms";
+            String sql = "SELECT name,country FROM Rooms";
             ResultSet rs = conn.createStatement().executeQuery(sql);
             List<String> names = new ArrayList<>();
             while (rs.next()) {
-                names.add(rs.getString("name"));
+                names.add(rs.getString("name")+"("+rs.getString("country")+")");
             }
             req.setAttribute("roomNames", names);
             conn.close();
