@@ -1,1 +1,0 @@
-# Room-with-lamps
