@@ -23,7 +23,9 @@ public class ListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
             Connection conn = Utility.connectToDB();
-            String sql = "SELECT name,country FROM Rooms";
+            String sql="CREATE TABLE IF NOT EXISTS ROOMS (name varchar(50),country varchar(50), light varchar(50));";
+            conn.createStatement().execute(sql);
+            sql = "SELECT name,country FROM Rooms";
             ResultSet rs = conn.createStatement().executeQuery(sql);
             List<String> names = new ArrayList<>();
             while (rs.next()) {

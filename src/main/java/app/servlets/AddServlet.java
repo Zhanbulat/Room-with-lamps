@@ -29,7 +29,9 @@ public class AddServlet extends HttpServlet {
                 try {
                     req.setAttribute("exist","notexist");
                     Connection conn = Utility.connectToDB();
-                    String sql = "SELECT country FROM Rooms WHERE name=" +"'"+name+"'";
+                    String sql="CREATE TABLE IF NOT EXISTS ROOMS (name varchar(50),country varchar(50),light varchar(50))";
+                    conn.createStatement().execute(sql);
+                    sql = "SELECT country FROM Rooms WHERE name=" +"'"+name+"'";
                     ResultSet rs = conn.createStatement().executeQuery(sql);
                     while (rs.next()) {
                         String countryCheck = rs.getString(("country"));
