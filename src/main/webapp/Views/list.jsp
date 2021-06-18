@@ -16,8 +16,6 @@
     <div>
         <div>
             <h2>List of rooms:</h2>
-
-
         </div>
         <%
             List<String> names = (List<String>) request.getAttribute("roomNames");
